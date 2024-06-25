@@ -1,9 +1,11 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 
 class MovingBackground extends StatefulWidget {
   final Widget child;
 
-  MovingBackground({required this.child});
+  const MovingBackground({super.key, required this.child});
 
   @override
   _MovingBackgroundState createState() => _MovingBackgroundState();

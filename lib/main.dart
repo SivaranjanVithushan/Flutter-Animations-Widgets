@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
     );
@@ -104,7 +104,7 @@ class OptionsScreen extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => StaggeredAnimationDemo(),
+                      builder: (context) => const StaggeredAnimationDemo(),
                     ),
                   );
                 },

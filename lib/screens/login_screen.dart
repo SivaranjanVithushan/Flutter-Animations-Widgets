@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animations/screens/home_page.dart';
 import 'package:flutter_animations/screens/registration_screen.dart';
 import 'package:flutter_animations/widgets/moving_background.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 
@@ -43,11 +47,22 @@ class _LoginScreenState extends State<LoginScreen>
       });
 
       // Simulate a login attempt
-      Future.delayed(Duration(seconds: 2), () {
+      Future.delayed(const Duration(seconds: 2), () {
         setState(() {
           _isLoading = false;
         });
         // Handle successful login logic here
+
+        // Navigate to the home screen
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
+          ),
+        );
+
+        // Navigator.of(context).push(
+        //   MaterialPageRoute(builder: (context) => const HomePage()),
+        // );
       });
     }
   }
@@ -56,24 +71,24 @@ class _LoginScreenState extends State<LoginScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: const Text('Login'),
         elevation: 0,
       ),
       body: MovingBackground(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Form(
               key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(height: 32.0),
+                  const SizedBox(height: 32.0),
                   FadeTransition(
                     opacity: _animation,
-                    child: FlutterLogo(size: 100),
+                    child: const FlutterLogo(size: 100),
                   ),
-                  SizedBox(height: 32.0),
+                  const SizedBox(height: 32.0),
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Email',
@@ -90,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen>
                       return null;
                     },
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Password',
@@ -107,26 +122,26 @@ class _LoginScreenState extends State<LoginScreen>
                       return null;
                     },
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   _isLoading
-                      ? CircularProgressIndicator()
+                      ? const CircularProgressIndicator()
                       : ElevatedButton(
                           onPressed: _login,
-                          child: Text('Login'),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
                           ),
+                          child: const Text('Login'),
                         ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (context) => RegistrationScreen()),
+                            builder: (context) => const RegistrationScreen()),
                       );
                     },
-                    child:
-                        Text('Register', style: TextStyle(color: Colors.white)),
+                    child: const Text('Register',
+                        style: TextStyle(color: Colors.white)),
                   ),
                 ],
               ),

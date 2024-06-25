@@ -1,7 +1,9 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animations/screens/home_screen.dart';
 import 'package:flutter_animations/screens/profile_screen.dart';
+import 'package:flutter_animations/screens/setting_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,8 +21,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _pages = [
-      const Center(child: Text('Home', style: TextStyle(fontSize: 24))),
-      const Center(child: Text('Search', style: TextStyle(fontSize: 24))),
+      const HomeScreen(),
+      const SettingScreen(),
       const ProfilePage(), // Added ProfilePage here
     ];
   }
@@ -48,13 +50,25 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings), label: 'Settings'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: const Color.fromARGB(255, 6, 33, 54),
         onTap: _onItemTapped,
       ),
+    );
+  }
+}
+
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text('Settings', style: TextStyle(fontSize: 24)),
     );
   }
 }

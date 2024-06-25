@@ -130,7 +130,8 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
                           ),
-                          child: const Text('Register'),
+                          child: const Text('Register',
+                              style: TextStyle(color: Colors.white)),
                         ),
                 ],
               ),

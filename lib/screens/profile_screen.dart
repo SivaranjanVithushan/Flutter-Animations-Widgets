@@ -15,20 +15,19 @@ class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController _bioController = TextEditingController();
 
   @override
+  initState() {
+    super.initState();
+    print('Profile page initialized');
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-        actions: [
-          IconButton(
-            onPressed: _showEditDialog,
-            icon: const Icon(Icons.edit),
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Center(child: _buildProfileInfo()),
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Center(child: _buildProfileInfo()),
+        ),
       ),
     );
   }

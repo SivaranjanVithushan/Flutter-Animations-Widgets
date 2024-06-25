@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animations/widgets/moving_background.dart';
 
 class RegistrationScreen extends StatefulWidget {
+  const RegistrationScreen({super.key});
+
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
@@ -41,7 +44,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
       });
 
       // Simulate a registration attempt
-      Future.delayed(Duration(seconds: 2), () {
+      Future.delayed(const Duration(seconds: 2), () {
         setState(() {
           _isLoading = false;
         });
@@ -53,65 +56,82 @@ class _RegistrationScreenState extends State<RegistrationScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Register')),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(height: 32.0),
-                FadeTransition(
-                  opacity: _animation,
-                  child: FlutterLogo(size: 100),
-                ),
-                SizedBox(height: 32.0),
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'Name'),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter your name';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 16.0),
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'Email'),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                      return 'Please enter a valid email';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 16.0),
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'Password'),
-                  obscureText: true,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    if (value.length < 6) {
-                      return 'Password must be at least 6 characters';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 16.0),
-                _isLoading
-                    ? CircularProgressIndicator()
-                    : ElevatedButton(
-                        onPressed: _register,
-                        child: Text('Register'),
-                      ),
-              ],
+      appBar: AppBar(title: const Text('Register')),
+      body: MovingBackground(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const SizedBox(height: 32.0),
+                  FadeTransition(
+                      opacity: _animation,
+                      child: const Hero(
+                          tag: 'logo', child: FlutterLogo(size: 100))),
+                  const SizedBox(height: 32.0),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Name',
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.8),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your name';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 16.0),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Email',
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.8),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                        return 'Please enter a valid email';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 16.0),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.8),
+                    ),
+                    obscureText: true,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      if (value.length < 6) {
+                        return 'Password must be at least 6 characters';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 16.0),
+                  _isLoading
+                      ? const CircularProgressIndicator()
+                      : ElevatedButton(
+                          onPressed: _register,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue,
+                          ),
+                          child: const Text('Register'),
+                        ),
+                ],
+              ),
             ),
           ),
         ),

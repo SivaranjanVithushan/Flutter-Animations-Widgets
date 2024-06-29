@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     _pages = [
       const HomeScreen(),
       const SettingScreen(),
-      const ProfilePage(), // Added ProfilePage here
+      // const ProfilePage(), // Added ProfilePage here
     ];
   }
 
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
               icon: Icon(Icons.settings), label: 'Settings'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          // BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: const Color.fromARGB(255, 6, 33, 54),

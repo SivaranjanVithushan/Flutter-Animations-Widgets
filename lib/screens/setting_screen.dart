@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_animations/screens/profile_screen.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -17,26 +19,29 @@ class _SettingScreenState extends State<SettingScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage('https://placehold.it/150'),
-                ),
-                SizedBox(width: 16.0),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Daphne Lisa'),
-                    Row(
-                      children: [
-                        Text('Online'),
-                        SizedBox(width: 8.0),
-                        Icon(Icons.add_circle_outline),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+            InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const ProfilePage(),
+                  ),
+                );
+              },
+              child: const Row(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: NetworkImage('https://placehold.it/150'),
+                  ),
+                  SizedBox(width: 16.0),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Daphne Lisa'),
+                      Text('Online', style: TextStyle(color: Colors.green)),
+                    ],
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 16.0),
             const ListTile(
